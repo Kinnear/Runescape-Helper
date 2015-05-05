@@ -20,22 +20,49 @@ namespace RunescapeHelper
         public Form1()
         {
             InitializeComponent();
+            string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=kirano";
+
+            csvData = GET(a);
+            HighscoreParser(csvData);
         }
 
         private void requestBtn_Click(object sender, EventArgs e)
         {
-            string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=" + usernameTextbox.Text;
+          //  string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=" + usernameTextbox.Text;
+            string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=kirano";
             
             csvData = GET(a);
-            resultsTextbox.Text = csvData;
+            //resultsTextbox.Text = csvData;
+            HighscoreParser(csvData);
         }
 
         // parses the highscore csv into data that is meaningful
-        void HighscoreParser(string csv)
+        HighscoreData HighscoreParser(string csv)
         {
-            string[] temp;
-            char[] delimiters = {',', ' ' };
+            HighscoreData data = new HighscoreData();
 
+            // to store the segments of data
+            string[] temp;
+            char[] delimiters = {'\n'};
+
+            temp = csv.Split(delimiters);
+
+            //break the string further down into its components
+            for (int i = 0; i < temp.Length; i++)
+            {
+                string[] breadTemp = temp[i].Split(',');
+                for(int j = 0; j < breadTemp.Length; j++)
+                {
+                    data.skills[i, j] = Int32.Parse(breadTemp[j]);
+                }
+            }
+
+            return data;
+            //for (int i = 0; i < temp.Length; i++)
+            //{
+            //    Console.WriteLine(temp[i]);
+            //}
+            //Console.WriteLine("Length of array: " + temp.Length.ToString());
         }
 
         // Returns JSON string
