@@ -14,7 +14,6 @@ namespace RunescapeHelper
 {
     public partial class Form1 : Form
     {
-        public string csvData = "";
         public HighscoreData playerHighscoreData;
 
         public Form1()
@@ -22,8 +21,7 @@ namespace RunescapeHelper
             InitializeComponent();
             string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=kirano";
 
-            csvData = GET(a);
-            HighscoreParser(csvData);
+            playerHighscoreData = HighscoreParser(GET(a));
         }
 
         private void requestBtn_Click(object sender, EventArgs e)
@@ -31,9 +29,7 @@ namespace RunescapeHelper
           //  string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=" + usernameTextbox.Text;
             string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=kirano";
             
-            csvData = GET(a);
-            //resultsTextbox.Text = csvData;
-            HighscoreParser(csvData);
+            playerHighscoreData = HighscoreParser(GET(a));
         }
 
         // parses the highscore csv into data that is meaningful
@@ -48,21 +44,16 @@ namespace RunescapeHelper
             temp = csv.Split(delimiters);
 
             //break the string further down into its components
-            for (int i = 0; i < temp.Length; i++)
+            for (int i = 0; i < Enum.GetNames(typeof(HighscoreData.SKILLS)).Length; i++)
             {
-                string[] breadTemp = temp[i].Split(',');
-                for(int j = 0; j < breadTemp.Length; j++)
+                string[] holder = temp[i].Split(',');
+                for (int j = 0; j < holder.Length; j++)
                 {
-                    data.skills[i, j] = Int32.Parse(breadTemp[j]);
+                    data.skills[i, j] = Int32.Parse(holder[j]);
                 }
             }
 
             return data;
-            //for (int i = 0; i < temp.Length; i++)
-            //{
-            //    Console.WriteLine(temp[i]);
-            //}
-            //Console.WriteLine("Length of array: " + temp.Length.ToString());
         }
 
         // Returns JSON string
