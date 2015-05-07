@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.requestBtn = new System.Windows.Forms.Button();
-            this.resultsTextbox = new System.Windows.Forms.TextBox();
             this.usernameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.highscoreViewList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // requestBtn
@@ -45,15 +43,6 @@
             this.requestBtn.Text = "Request";
             this.requestBtn.UseVisualStyleBackColor = true;
             this.requestBtn.Click += new System.EventHandler(this.requestBtn_Click);
-            // 
-            // resultsTextbox
-            // 
-            this.resultsTextbox.Location = new System.Drawing.Point(38, 768);
-            this.resultsTextbox.Multiline = true;
-            this.resultsTextbox.Name = "resultsTextbox";
-            this.resultsTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.resultsTextbox.Size = new System.Drawing.Size(492, 186);
-            this.resultsTextbox.TabIndex = 2;
             // 
             // usernameTextbox
             // 
@@ -71,28 +60,26 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Username :";
             // 
-            // dataGridView1
+            // highscoreViewList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(169, 302);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 5;
+            this.highscoreViewList.Location = new System.Drawing.Point(34, 122);
+            this.highscoreViewList.Name = "highscoreViewList";
+            this.highscoreViewList.Size = new System.Drawing.Size(664, 709);
+            this.highscoreViewList.TabIndex = 5;
+            this.highscoreViewList.UseCompatibleStateImageBehavior = false;
+            this.highscoreViewList.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 982);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.highscoreViewList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.usernameTextbox);
-            this.Controls.Add(this.resultsTextbox);
             this.Controls.Add(this.requestBtn);
             this.Name = "Form1";
             this.Text = "Runescape Helper";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,10 +88,9 @@
         #endregion
 
         private System.Windows.Forms.Button requestBtn;
-        private System.Windows.Forms.TextBox resultsTextbox;
         private System.Windows.Forms.TextBox usernameTextbox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView highscoreViewList;
     }
 }
 

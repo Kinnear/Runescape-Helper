@@ -22,6 +22,34 @@ namespace RunescapeHelper
             string a = "http://services.runescape.com/m=hiscore/index_lite.ws?player=kirano";
 
             playerHighscoreData = HighscoreParser(GET(a));
+
+            highscoreViewList.Columns.Add("Skill", 50);
+            highscoreViewList.Columns.Add("Rank", 100);
+            highscoreViewList.Columns.Add("Level", 100);
+            highscoreViewList.Columns.Add("Experience", 100);
+
+
+            //add columns to the listview
+             foreach (var value in Enum.GetValues(typeof(HighscoreData.SKILLS_LISTING))) 
+             {
+                 highscoreViewList.Columns.Add(((HighscoreData.SKILLS_LISTING)value).ToString(), 100);
+             }
+
+             for(int i = 0; i < Enum.GetNames(typeof(HighscoreData.SKILLS)).Length; i ++)
+             {
+                 string[] arr = new string[Enum.GetNames(typeof(HighscoreData.SKILLS_LISTING)).Length + 1];
+                 ListViewItem itm;
+                 //add items to ListView
+                 arr[0] = ((HighscoreData.SKILLS)i).ToString();
+                 arr[1] = playerHighscoreData.skills[i, 0].ToString();
+                 arr[2] = playerHighscoreData.skills[i, 1].ToString();
+                 arr[3] = playerHighscoreData.skills[i, 2].ToString();
+                 itm = new ListViewItem(arr);
+                 highscoreViewList.Items.Add(itm);
+             }
+
+            
+
         }
 
         private void requestBtn_Click(object sender, EventArgs e)
